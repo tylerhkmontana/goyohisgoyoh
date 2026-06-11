@@ -1,10 +1,16 @@
 import styles from './work.module.css'
-import works from '@/data/works.json'
 import Image from 'next/image';
+import { notFound } from 'next/navigation';
+import { getWorks } from '@/lib/contentful';
 
 export default async function Work({ params }) {
       let { id } = await params;
+      const works = await getWorks();
       const work = works.find(w => w.id === id)
+
+      if (!work) {
+        notFound();
+      }
 
     return (
         <main className={`main ${styles.main}`}>

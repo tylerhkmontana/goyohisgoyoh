@@ -1,7 +1,7 @@
 import styles from "./works.module.css";
 import Link from "next/link";
-import works from "@/data/works.json"
 import Card from "@/components/card";
+import { getWorks } from "@/lib/contentful";
 
 const links = [
   { category: "graphic-design", label: "Graphic Design"}, 
@@ -10,6 +10,7 @@ const links = [
 ];
 
 export default async function Works({ searchParams }) {
+      const works = await getWorks();
       let { category } = await searchParams;
         if (category === undefined) {category = "all"}
     return (

@@ -1,12 +1,12 @@
 import Link from "next/link";
-import blogs from "@/data/blogs.json";
 import styles from "./blog.module.css";
+import { getBlogs } from "@/lib/contentful";
 
-function getPostIndex(postParam) {
+function getPostIndex(postParam, postCount) {
   const value = Array.isArray(postParam) ? postParam[0] : postParam;
   const index = Number(value);
 
-  if (!Number.isInteger(index) || index < 0 || index >= blogs.length) {
+  if (!Number.isInteger(index) || index < 0 || index >= postCount) {
     return 0;
   }
 
@@ -20,10 +20,10 @@ function formatDate(date) {
 }
 
 export default async function Blog({ searchParams }) {
+  const blogs = await getBlogs();
   const params = await searchParams;
-  const selectedIndex = getPostIndex(params?.post);
+  const selectedIndex = getPostIndex(params?.post, blogs.length);
   const selectedPost = blogs[selectedIndex];
-  const paragraphs = selectedPost.text.split("\n\n");
 
   return (
     <main className={`main ${styles.main}`}>
@@ -52,7 +52,7 @@ export default async function Blog({ searchParams }) {
       </ul>
 
       <article className={styles.post}>
-        {paragraphs.map((paragraph) => (
+        {selectedPost.paragraphs.map((paragraph) => (
           <p key={paragraph}>{paragraph}</p>
         ))}
       </article>
