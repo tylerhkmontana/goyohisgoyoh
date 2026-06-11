@@ -1,0 +1,32 @@
+
+.topNav {
+    position: fixed;
+    top: var(--page-margin);
+    left: var(--page-margin);
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-2);
+    font-family: var(--font-inter);
+    font-size: var(--text-2xl);
+    font-weight: 500;
+    z-index: 10;
+
+    & a {
+        display: block;
+        line-height: inherit;
+    }
+
+    & a:hover,
+    & a.active {
+        background-color: var(--highlight);
+    }
+}
+
+.topNavItem {
+    display: flex;
+    gap: var(--space-2);
+}
+
+.inactive {
+    display: none;
+}

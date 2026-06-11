@@ -1,0 +1,31 @@
+.main {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    margin-inline: var(--space-32);
+}
+.imageContainer {
+    position:relative;
+    width: 400px;
+    object-fit: contain;
+    aspect-ratio: 1/1;
+}
+
+.info {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+
+    & h4 {
+        font-family: var(--font-inter);
+    }
+    & h6 {
+        font-family: var(--font-courier);
+        font-size: var(--text-sm);
+        color: var(--highlight);
+    }
+
+    & p {
+        width: 400px;
+    }
+}

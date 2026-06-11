@@ -1,0 +1,89 @@
+[
+  {
+    "id": "work-001",
+    "src": "/works/graphic-design-1.jpg",
+    "title": "Signal Poster Study",
+    "category": "graphic-design",
+    "description": "This poster study explores how bold type, dense contrast, and layered graphic elements can create a clear visual signal. The composition balances structure with motion, using scale and spacing to guide the eye through the surface.",
+    "year": 2021,
+    "isMain" : false
+  },
+  {
+    "id": "work-002",
+    "src": "/works/graphic-design-2.jpg",
+    "title": "Modular Identity Grid",
+    "category": "graphic-design",
+    "description": "This identity experiment uses modular forms to suggest a flexible system rather than a single static mark. Its visual rhythm comes from repeated structures, shifting alignments, and a restrained balance between order and movement.",
+    "year": 2023,
+        "isMain" : false
+
+  },
+  {
+    "id": "work-003",
+    "src": "/works/graphic-design-3.jpg",
+    "title": "Offset Print Notes",
+    "category": "graphic-design",
+    "description": "This composition draws from the language of print tests, layout marks, and offset production. Crisp shapes and measured negative space create a playful arrangement that still feels deliberate and controlled.",
+    "year": 2020,
+        "isMain" : true
+  },
+  {
+    "id": "work-004",
+    "src": "/works/graphic-design-4.jpg",
+    "title": "Catalog Cover Draft",
+    "category": "graphic-design",
+    "description": "This cover draft is built around editorial pacing, giving the layout enough structure to feel clear while leaving room for texture and atmosphere. The design uses hierarchy, proportion, and quiet contrast to frame the content with a polished visual tone.",
+    "year": 2024,
+        "isMain" : false
+
+  },
+  {
+    "id": "work-005",
+    "src": "/works/graphic-design-5.jpg",
+    "title": "Archive Label System",
+    "category": "graphic-design",
+    "description": "This visual system takes cues from archive labels, index cards, and collection tags. The result is a clean graphic language where typography, spacing, and repeated marks work together to make information feel organized and intentional.",
+    "year": 2022,
+        "isMain" : true
+
+  },
+  {
+    "id": "work-006",
+    "src": "/works/illustration-1.jpg",
+    "title": "Quiet Window",
+    "category": "drawings-illustration",
+    "description": "This illustration captures a quiet interior moment shaped by soft light and stillness. Gentle edges, muted tones, and simple forms create a calm atmosphere that feels personal without becoming overly literal.",
+    "year": 2019,
+        "isMain" : true
+
+  },
+  {
+    "id": "work-007",
+    "src": "/works/illustration-2.jpg",
+    "title": "Garden Memory",
+    "category": "drawings-illustration",
+    "description": "This drawing leans into organic shapes and a softened sense of place, suggesting memory more than direct observation. Its atmosphere comes from subtle gestures, open space, and a light touch that lets the image breathe.",
+    "year": 2021,
+        "isMain" : true
+  },
+  {
+    "id": "work-008",
+    "src": "/works/illustration-3.jpg",
+    "title": "Linework Study",
+    "category": "drawings-illustration",
+    "description": "This linework study focuses on gesture, contour, and the expressive quality of restraint. The drawing uses negative space as an active part of the image, allowing small shifts in line and rhythm to carry the mood.",
+    "year": 2023,
+        "isMain" : false
+
+  },
+  {
+    "id": "work-009",
+    "src": "/works/illustration-4.jpg",
+    "title": "Evening Sketch",
+    "category": "drawings-illustration",
+    "description": "This sketch uses calm tones and minimal detail to suggest a small narrative moment. Its mood comes through in the balance between loose marks and quiet composition, leaving space for the viewer to complete the scene.",
+    "year": 2020,
+        "isMain" : false
+
+  }
+]

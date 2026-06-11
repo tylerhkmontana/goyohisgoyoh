@@ -1,0 +1,9 @@
+.main {
+    padding-top: var(--space-16);
+}
+
+.logo {
+    position: fixed;
+    top: var(--page-margin);
+    right: var(--page-margin);
+}

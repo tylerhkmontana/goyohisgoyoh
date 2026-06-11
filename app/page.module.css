@@ -1,142 +1,129 @@
+/* app/page.module.css */
 .page {
-  --background: #fafafa;
-  --foreground: #fff;
-
-  --text-primary: #000;
-  --text-secondary: #666;
-
-  --button-primary-hover: #383838;
-  --button-secondary-hover: #f2f2f2;
-  --button-secondary-border: #ebebeb;
-
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-geist-sans);
-  background-color: var(--background);
+  min-height: calc(100dvh - (var(--page-margin) * 2));
 }
 
 .main {
-  display: flex;
-  flex: 1;
-  width: 100%;
-  max-width: 800px;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: space-between;
-  background-color: var(--foreground);
-  padding: 120px 60px;
+  min-height: inherit;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  gap: var(--space-6);
 }
 
-.intro {
+.nav {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  text-align: left;
-  gap: 24px;
+  width: max-content;
+  gap: 30px;
+  font-family: var(--font-inter);
+  font-size: var(--text-6xl);
+  font-weight: var(--weight-bold);
+  line-height: 0.82;
+
+  & a {
+    display: block;
+    line-height: inherit;
+  }
+
+  & a:hover {
+    color: var(--highlight);
+  }
 }
 
-.intro h1 {
-  max-width: 320px;
-  font-size: 40px;
-  font-weight: 600;
-  line-height: 48px;
-  letter-spacing: -2.4px;
-  text-wrap: balance;
-  color: var(--text-primary);
+.navItem {
+  position: relative;
+  width: max-content;
 }
 
-.intro p {
-  max-width: 440px;
-  font-size: 18px;
-  line-height: 32px;
-  text-wrap: balance;
-  color: var(--text-secondary);
+.navItem::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 100%;
+  width: var(--space-16);
+  height: calc(100% + var(--space-4));
+  transform: translateY(-50%);
 }
 
-.intro a {
-  font-weight: 500;
-  color: var(--text-primary);
-}
-
-.ctas {
+.subMenu {
+  position: absolute;
+  top: 50%;
+  left: calc(100% + var(--space-16));
   display: flex;
-  flex-direction: row;
-  width: 100%;
-  max-width: 440px;
-  gap: 16px;
-  font-size: 14px;
-}
-
-.ctas a {
-  display: flex;
-  justify-content: center;
   align-items: center;
-  height: 40px;
-  padding: 0 16px;
-  border-radius: 128px;
-  border: 1px solid transparent;
-  transition: 0.2s;
-  cursor: pointer;
-  width: fit-content;
-  font-weight: 500;
+  gap: var(--space-16);
+  width: max-content;
+  font-family: var(--font-courier);
+  font-size: var(--text-2xl);
+  font-weight: var(--weight-bold);
+  line-height: 1;
+  color: var(--highlight);
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%);
+  visibility: hidden;
+  transition:
+    opacity 160ms ease,
+    visibility 160ms ease;
 }
 
-a.primary {
-  background: var(--text-primary);
-  color: var(--background);
-  gap: 8px;
+.subMenu a {
+  line-height: inherit;
+  font-size: var(--text-lg);
 }
 
-a.secondary {
-  border-color: var(--button-secondary-border);
+.navItem:hover .subMenu,
+.navItem:focus-within .subMenu {
+  opacity: 1;
+  pointer-events: auto;
+  visibility: visible;
 }
 
-/* Enable hover only on non-touch devices */
-@media (hover: hover) and (pointer: fine) {
-  a.primary:hover {
-    background: var(--button-primary-hover);
-    border-color: transparent;
+.workPreview {
+  --card-float-distance: 10px;
+
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-rows: minmax(0, 1fr);
+  gap: var(--grid-gap);
+  padding-block: var(--card-float-distance);
+  overflow: hidden;
+}
+
+.workPreview > :nth-child(odd) {
+  animation: workCardFloatOdd 5s ease-in-out infinite;
+}
+
+.workPreview > :nth-child(even) {
+  animation: workCardFloatEven 5s ease-in-out infinite;
+}
+
+@keyframes workCardFloatOdd {
+  0%,
+  100% {
+    transform: translateY(calc(var(--card-float-distance) * -1));
   }
 
-  a.secondary:hover {
-    background: var(--button-secondary-hover);
-    border-color: transparent;
+  50% {
+    transform: translateY(var(--card-float-distance));
   }
 }
 
-@media (max-width: 600px) {
-  .main {
-    padding: 48px 24px;
+@keyframes workCardFloatEven {
+  0%,
+  100% {
+    transform: translateY(var(--card-float-distance));
   }
 
-  .intro {
-    gap: 16px;
-  }
-
-  .intro h1 {
-    font-size: 32px;
-    line-height: 40px;
-    letter-spacing: -1.92px;
+  50% {
+    transform: translateY(calc(var(--card-float-distance) * -1));
   }
 }
 
-@media (prefers-color-scheme: dark) {
-  .logo {
-    filter: invert();
-  }
-
-  .page {
-    --background: #000;
-    --foreground: #000;
-
-    --text-primary: #ededed;
-    --text-secondary: #999;
-
-    --button-primary-hover: #ccc;
-    --button-secondary-hover: #1a1a1a;
-    --button-secondary-border: #1a1a1a;
+@media (prefers-reduced-motion: reduce) {
+  .workPreview > * {
+    animation: none;
+    transform: none;
   }
 }

@@ -1,0 +1,31 @@
+.subNav {
+    color: var(--highlight);
+    display: flex;
+    gap: var(--space-6);
+    font-family: var(--font-courier);
+
+    & ul {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-4);
+
+        & a:hover {
+            text-decoration: underline;
+        }
+    }
+}
+
+.activeCategory {
+    text-decoration: underline;
+}
+
+.gallery {
+     display: grid;
+ grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: var(--grid-gap);
+  margin-top: var(--space-12);
+}
+
+.gallery > a {
+  aspect-ratio: 1 / 1;
+}
