@@ -44,3 +44,9 @@ footer {
   font-size: var(--text-xs);
   z-index: 10;
 }
+
+@media (max-width: 900px) { 
+  .main {
+    margin-top: var(--space-16);
+  }
+}

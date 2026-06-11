@@ -1,0 +1,125 @@
+.main {
+  display: grid;
+  grid-template-columns: minmax(8rem, 10rem) minmax(0, 1fr);
+  grid-template-rows: auto 1fr;
+  grid-template-areas:
+    "archive meta"
+    "postList post";
+  column-gap: clamp(var(--space-16), 18vw, 22rem);
+  row-gap: var(--space-8);
+  align-items: start;
+  margin-inline: clamp(var(--space-4), 5vw, var(--space-20));
+      font-size: var(--text-sm);
+
+}
+
+.archive {
+  grid-area: archive;
+  color: var(--highlight);
+  font-family: var(--font-courier);
+  /* font-weight: var(--weight-bold); */
+}
+
+.meta {
+  grid-area: meta;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  min-width: 0;
+  color: var(--highlight);
+  font-family: var(--font-courier);
+}
+
+.postList {
+  grid-area: postList;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  min-width: 0;
+  color: var(--highlight);
+  font-family: var(--font-courier);
+  list-style: none;
+}
+
+.postList li {
+  position: relative;
+  min-width: 0;
+}
+
+.postLink {
+  position: relative;
+  display: block;
+  min-width: 0;
+  min-height: 1.25em;
+}
+
+.postLink:hover,
+.postLink:focus-visible,
+.activePost {
+    font-weight: var(--weight-bold);
+
+}
+
+.postTitle {
+  display: block;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.postLink:hover .postTitle,
+.postLink:focus-visible .postTitle {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: max-content;
+  max-width: min(60vw, 36rem);
+  overflow: visible;
+  white-space: normal;
+}
+
+.post {
+  grid-area: post;
+  max-width: 40rem;
+  line-height: var(--leading-snug);
+}
+
+.post p + p {
+  margin-top: var(--space-4);
+}
+
+@media (max-width: 900px) {
+  .main {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      
+      "meta"
+      "post"
+      "archive"
+        "postList"
+        ;
+    row-gap: var(--space-6);
+    margin-inline: 0;
+  }
+
+  .archive {
+    margin-top: var(--space-16);
+  }
+
+  .postList {
+    gap: var(--space-3);
+  }
+
+  .postLink:hover .postTitle,
+  .postLink:focus-visible .postTitle {
+    max-width: calc(100vw - (var(--page-margin) * 2));
+  }
+
+  .post {
+    max-width: none;
+    font-size: var(--text-sm);
+    line-height: var(--leading-normal);
+  }
+}

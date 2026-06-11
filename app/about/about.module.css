@@ -19,3 +19,9 @@
       }
 }
 
+@media (max-width: 900px) {
+    .intro {
+        width: 300px;
+        font-size: var(--text-sm);
+    }
+}

@@ -7,8 +7,11 @@
 .imageContainer {
     position:relative;
     width: 400px;
-    object-fit: contain;
-    aspect-ratio: 1/1;
+    height: 400px;
+
+    & img {
+        object-fit: contain;
+    }
 }
 
 .info {
@@ -27,5 +30,22 @@
 
     & p {
         width: 400px;
+    }
+}
+
+@media (max-width: 900px) { 
+    .main {
+        flex-direction:  column;
+        align-items: center;
+        gap: var(--space-4);
+    }
+    .imageContainer {
+        width: 300px;
+    }
+
+    .info {
+        & p {
+            width: 300px;
+        }
     }
 }

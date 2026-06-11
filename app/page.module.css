@@ -127,3 +127,37 @@
     transform: none;
   }
 }
+
+
+@media (max-width: 900px) {
+  .main {
+     height: auto;
+  }
+.workPreview {
+      grid-template-columns: 1fr;
+      grid-template-rows: 400px 400px 400px 400px;
+}
+
+@keyframes workCardFloatOdd {
+  0%,
+  100% {
+    transform: translateX(calc(var(--card-float-distance) * -1));
+  }
+
+  50% {
+    transform: translateX(var(--card-float-distance));
+  }
+}
+
+@keyframes workCardFloatEven {
+  0%,
+  100% {
+    transform: translateX(var(--card-float-distance));
+  }
+
+  50% {
+    transform: translateX(calc(var(--card-float-distance) * -1));
+  }
+}
+
+}

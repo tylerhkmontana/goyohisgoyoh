@@ -6,4 +6,5 @@
     position: fixed;
     top: var(--page-margin);
     right: var(--page-margin);
+    z-index: 10;
 }

@@ -29,3 +29,10 @@
 .gallery > a {
   aspect-ratio: 1 / 1;
 }
+
+
+@media (max-width: 900px) {
+    .gallery {
+         grid-template-columns: repeat(1, minmax(0, 1fr));
+    }
+}

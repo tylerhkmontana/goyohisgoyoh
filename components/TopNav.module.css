@@ -30,3 +30,9 @@
 .inactive {
     display: none;
 }
+
+@media (max-width: 900px) {
+    .topNav {
+        font-size: var(--text-sm);
+    }
+}
