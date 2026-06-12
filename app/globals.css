@@ -37,12 +37,12 @@ a {
   margin-top: var(--space-32);
 }
 
+
+
 footer {
-  position: fixed;
-  bottom: var(--page-margin);
-  left: var(--page-margin);
+  margin-top: var(--space-32);
   font-size: var(--text-xs);
-  z-index: 10;
+  
 }
 
 @media (max-width: 900px) { 

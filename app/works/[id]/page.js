@@ -7,6 +7,7 @@ export default async function Work({ params }) {
       let { id } = await params;
       const works = await getWorks();
       const work = works.find(w => w.id === id)
+      const details = work?.details || [];
 
       if (!work) {
         notFound();
@@ -22,6 +23,13 @@ export default async function Work({ params }) {
                     <h4>{work.title}</h4>
                     <h6>{work.year}</h6>
                     <p>{work.description}</p>
+                    {details.length > 0 ? (
+                        <div className={styles.details}>
+                            {details.map((paragraph) => (
+                                <p key={paragraph}>{paragraph}</p>
+                            ))}
+                        </div>
+                    ) : null}
                 </div>
         </main>
     )

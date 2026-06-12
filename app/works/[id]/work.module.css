@@ -33,6 +33,12 @@
     }
 }
 
+.details {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-3);
+}
+
 @media (max-width: 900px) { 
     .main {
         flex-direction:  column;

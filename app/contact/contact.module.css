@@ -1,5 +1,4 @@
 .contact {
-  min-height: calc(100dvh - (var(--page-margin) * 2));
   color: var(--highlight);
   font-family: var(--font-courier);
   font-size: var(--text-2xl);

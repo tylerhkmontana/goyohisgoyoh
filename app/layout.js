@@ -29,9 +29,9 @@ export const metadata = {
   title: "goyohisgoyoh",
   description: "goyohisgoyoh's portfolio website",
   icons: {
-    icon: "/logo.png",
-    apple:"/logo.png"
-  } 
+    icon: [{ url: "/logo.png", type: "image/png" }],
+    apple: [{ url: "/logo.png", type: "image/png" }],
+  },
 };
 
 export default function RootLayout({ children }) {
