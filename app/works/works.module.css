@@ -19,11 +19,23 @@
     text-decoration: underline;
 }
 
+.sortNav {
+    color: var(--highlight);
+    display: flex;
+    gap: var(--space-4);
+    font-family: var(--font-courier);
+    margin-top: var(--space-8);
+}
+
+.sortNav a:hover {
+    text-decoration: underline;
+}
+
 .gallery {
      display: grid;
  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: var(--grid-gap);
-  margin-top: var(--space-12);
+  margin-top: var(--space-8);
 }
 
 .gallery > a {
