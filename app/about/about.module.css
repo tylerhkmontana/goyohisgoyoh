@@ -1,27 +1,28 @@
 .main {
-    display: flex;
-    flex-direction: column;
-    gap: var(--grid-gap);
+  display: flex;
+  flex-direction: column;
+  gap: var(--grid-gap);
 }
 
 .intro {
-    width: 500px;
+  width: 500px;
 }
 
 .profile {
-      min-height: 0;
-      position: relative;
-      width: 300px;
-      height: 300px;
+  min-height: 0;
+  position: relative;
+  width: 300px;
+  height: 300px;
 
-      & img {
-        object-position: left;
-      }
+  & img {
+    object-fit: contain;
+    object-position: left;
+  }
 }
 
 @media (max-width: 900px) {
-    .intro {
-        width: 300px;
-        font-size: var(--text-sm);
-    }
+  .intro {
+    width: 300px;
+    font-size: var(--text-sm);
+  }
 }

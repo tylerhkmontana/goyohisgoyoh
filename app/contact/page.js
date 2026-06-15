@@ -1,30 +1,34 @@
 import styles from "./contact.module.css";
+import { getSocialLinks } from "@/lib/contentful";
 
 const contactLinks = [
   {
-    label: "BYGOYOH@GMAIL.COM",
-    href: "mailto:bygoyoh@gmail.com",
+    title: "BYGOYOH@GMAIL.COM",
+    link: "mailto:bygoyoh@gmail.com",
   },
   {
-    label: "INSTAGRAM",
-    href: "https://www.instagram.com/",
+    title: "INSTAGRAM",
+    link: "https://www.instagram.com/",
   },
   {
-    label: "X",
-    href: "https://x.com/",
+    title: "X",
+    link: "https://x.com/",
   },
 ];
 
-export default function Contact() {
+export default async function Contact() {
+  const socialLinks = await getSocialLinks();
+  const links = socialLinks.length ? socialLinks : contactLinks;
+
   return (
     <main className={`main ${styles.contact}`}>
-      <p className={styles.message}>say hi anytime~!</p>
+      <p className={styles.message}>say hi anytime-!</p>
 
       <ul className={styles.linkList}>
-        {contactLinks.map((link) => (
-          <li className={styles.linkItem} key={link.label}>
+        {links.map((link) => (
+          <li className={styles.linkItem} key={link.title}>
             <span className={styles.marker} aria-hidden="true" />
-            <a href={link.href}>{link.label}</a>
+            <a href={link.link} target="_blank">{link.title}</a>
           </li>
         ))}
       </ul>

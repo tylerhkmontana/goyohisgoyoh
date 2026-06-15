@@ -1,4 +1,5 @@
 import Link from "next/link";
+import RichText from "@/components/rich-text";
 import styles from "./blog.module.css";
 import { getBlogs } from "@/lib/contentful";
 
@@ -52,9 +53,11 @@ export default async function Blog({ searchParams }) {
       </ul>
 
       <article className={styles.post}>
-        {selectedPost.paragraphs.map((paragraph) => (
-          <p key={paragraph}>{paragraph}</p>
-        ))}
+        <RichText
+          document={selectedPost.text}
+          assets={selectedPost.assets}
+          classNames={{ asset: styles.postAsset }}
+        />
       </article>
     </main>
   );

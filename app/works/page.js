@@ -2,44 +2,15 @@ import styles from "./works.module.css";
 import Link from "next/link";
 import Card from "@/components/card";
 import { getWorkCategories, getWorks } from "@/lib/contentful";
-
-const SORT_OPTIONS = [
-  { value: "newest", label: "Newest" },
-  { value: "oldest", label: "Oldest" },
-];
-
-function getWorksHref({ category, sort }) {
-  const params = new URLSearchParams();
-
-  if (category && category !== "all") {
-    params.set("category", category);
-  }
-
-  if (sort && sort !== "newest") {
-    params.set("sort", sort);
-  }
-
-  const query = params.toString();
-
-  return query ? `/works?${query}` : "/works";
-}
-
-function sortWorks(works, sort) {
-  const direction = sort === "oldest" ? 1 : -1;
-
-  return [...works].sort((a, b) => {
-    const yearDifference = a.year - b.year;
-
-    if (yearDifference !== 0) {
-      return yearDifference * direction;
-    }
-
-    return (
-      (new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime()) *
-      direction
-    );
-  });
-}
+import {
+  WORK_SORT_OPTIONS,
+  getVisibleWorks,
+  getWorkDetailHref,
+  getWorksHref,
+  normalizeWorkCategory,
+  normalizeWorkSort,
+  sortWorks,
+} from "@/lib/work-navigation";
 
 export default async function Works({ searchParams }) {
   const [works, categories] = await Promise.all([
@@ -47,15 +18,10 @@ export default async function Works({ searchParams }) {
     getWorkCategories(),
   ]);
   const params = await searchParams;
-  const category = params?.category || "all";
-  const sort = SORT_OPTIONS.some((option) => option.value === params?.sort)
-    ? params.sort
-    : "newest";
+  const category = normalizeWorkCategory(params?.category);
+  const sort = normalizeWorkSort(params?.sort);
   const links = [{ slug: "all", label: "All" }, ...categories];
-  const visibleWorks =
-    category === "all"
-      ? works
-      : works.filter((work) => work.category === category);
+  const visibleWorks = getVisibleWorks(works, category);
   const sortedWorks = sortWorks(visibleWorks, sort);
 
   return (
@@ -84,7 +50,7 @@ export default async function Works({ searchParams }) {
       </div>
 
       <div className={styles.sortNav} aria-label="Sort works">
-        {SORT_OPTIONS.map((option) => (
+        {WORK_SORT_OPTIONS.map((option) => (
           <Link
             className={sort === option.value ? styles.activeCategory : ""}
             key={option.value}
@@ -99,7 +65,7 @@ export default async function Works({ searchParams }) {
         {sortedWorks.map((work) => (
           <Card
             key={work.id}
-            href={`/works/${work.id}`}
+            href={getWorkDetailHref({ id: work.id, category, sort })}
             src={work.src}
             alt={work.title}
             title={work.title}
