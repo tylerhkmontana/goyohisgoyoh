@@ -1,7 +1,6 @@
 import localFont from "next/font/local";
 import Link from "next/link";
 import Image from "next/image";
-import TopNav from "@/components/top-nav";
 import styles from "./layout.module.css";
 import "@/styles/theme.css";
 import "./globals.css";
@@ -38,10 +37,6 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en" className={`${courier.variable} ${pretendard.variable} ${inter.variable}`}>
       <body>
-        {
-          
-        }
-        <TopNav />
         <Link href="/" className={styles.logo}><Image src="/logo.png" alt="GOYOH Logo" width={50} height={50} /></Link>
         {children}
         <footer>&copy; 2026 GOYOH</footer>

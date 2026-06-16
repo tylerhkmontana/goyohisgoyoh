@@ -23,7 +23,7 @@ export default function TopNav() {
   const pathname = usePathname();
 
   return (
-    <nav className={pathname === "/" ? styles.inactive  : styles.topNav}>
+    <nav className={styles.topNav}>
       {links.map((link, index) => (
         <span className={styles.topNavItem} key={link.href}>
           <Link

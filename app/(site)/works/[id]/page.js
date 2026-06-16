@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import ImageDetail from "@/components/image-detail";
 import RichText from "@/components/rich-text";
 import { getWorks } from "@/lib/contentful";
 import {
@@ -39,9 +39,14 @@ export default async function Work({ params, searchParams }) {
       </Link>
 
       <section className={styles.summary}>
-        <div className={styles.imageContainer}>
-          <Image src={work.src} fill alt={work.title} />
-        </div>
+        <ImageDetail
+          src={work.src}
+          fill
+          alt={work.title}
+          title={work.title}
+          sizes="(max-width: 900px) 300px, 400px"
+          className={styles.imageContainer}
+        />
 
         <div className={styles.info}>
           <h4>{work.title}</h4>
@@ -56,6 +61,20 @@ export default async function Work({ params, searchParams }) {
             document={work.details}
             assets={work.assets}
             classNames={{ asset: styles.detailAsset }}
+            renderAsset={({ asset, key, className }) => (
+              <figure key={key} className={className}>
+                <ImageDetail
+                  src={asset.src}
+                  width={asset.width || 1200}
+                  height={asset.height || 800}
+                  alt={asset.description || asset.title || ""}
+                  title={asset.title || asset.description}
+                  sizes="(max-width: 900px) 300px, 500px"
+                  className={styles.detailAssetTrigger}
+                />
+                {asset.title ? <figcaption>{asset.title}</figcaption> : null}
+              </figure>
+            )}
           />
         </section>
       ) : null}

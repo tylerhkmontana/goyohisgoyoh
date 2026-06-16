@@ -1,4 +1,4 @@
-import Image from "next/image";
+import LoadedImage from "./loaded-image";
 
 function renderTextNode(node, key) {
   let content = node.value;
@@ -52,9 +52,9 @@ function hasText(node) {
   return (node.content || []).some(hasText);
 }
 
-function renderBlockChildren(node, assets, classNames, key) {
+function renderBlockChildren(node, assets, classNames, renderAsset, key) {
   return (node.content || []).map((child, index) =>
-    renderRichTextNode(child, assets, classNames, `${key}-${index}`)
+    renderRichTextNode(child, assets, classNames, renderAsset, `${key}-${index}`)
   );
 }
 
@@ -68,7 +68,7 @@ function renderHeading(node, Tag, key) {
   );
 }
 
-function renderRichTextNode(node, assets, classNames, key) {
+function renderRichTextNode(node, assets, classNames, renderAsset, key) {
   if (node.nodeType === "paragraph") {
     const children = (node.content || []).map((child, index) =>
       renderInlineNode(child, `${key}-${index}`)
@@ -98,21 +98,33 @@ function renderRichTextNode(node, assets, classNames, key) {
   }
 
   if (node.nodeType === "unordered-list") {
-    return <ul key={key}>{renderBlockChildren(node, assets, classNames, key)}</ul>;
+    return (
+      <ul key={key}>
+        {renderBlockChildren(node, assets, classNames, renderAsset, key)}
+      </ul>
+    );
   }
 
   if (node.nodeType === "ordered-list") {
-    return <ol key={key}>{renderBlockChildren(node, assets, classNames, key)}</ol>;
+    return (
+      <ol key={key}>
+        {renderBlockChildren(node, assets, classNames, renderAsset, key)}
+      </ol>
+    );
   }
 
   if (node.nodeType === "list-item") {
-    return <li key={key}>{renderBlockChildren(node, assets, classNames, key)}</li>;
+    return (
+      <li key={key}>
+        {renderBlockChildren(node, assets, classNames, renderAsset, key)}
+      </li>
+    );
   }
 
   if (node.nodeType === "blockquote") {
     return (
       <blockquote key={key}>
-        {renderBlockChildren(node, assets, classNames, key)}
+        {renderBlockChildren(node, assets, classNames, renderAsset, key)}
       </blockquote>
     );
   }
@@ -129,9 +141,13 @@ function renderRichTextNode(node, assets, classNames, key) {
       return null;
     }
 
+    if (renderAsset) {
+      return renderAsset({ asset, key, className: classNames?.asset });
+    }
+
     return (
       <figure key={key} className={classNames?.asset}>
-        <Image
+        <LoadedImage
           src={asset.src}
           width={asset.width || 1200}
           height={asset.height || 800}
@@ -145,12 +161,18 @@ function renderRichTextNode(node, assets, classNames, key) {
   return null;
 }
 
-export default function RichText({ document, assets, classNames }) {
+export default function RichText({ document, assets, classNames, renderAsset }) {
   if (!document?.content?.length) {
     return null;
   }
 
   return document.content.map((node, index) =>
-    renderRichTextNode(node, assets, classNames, `rich-text-${index}`)
+    renderRichTextNode(
+      node,
+      assets,
+      classNames,
+      renderAsset,
+      `rich-text-${index}`
+    )
   );
 }

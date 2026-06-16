@@ -1,5 +1,5 @@
-import Image from "next/image";
 import Link from "next/link";
+import LoadedImage from "./loaded-image";
 import styles from "./Card.module.css";
 
 export default function Card({
@@ -12,7 +12,7 @@ export default function Card({
 }) {
   return (
     <Link href={href} className={styles.card} aria-label={title}>
-      <Image
+      <LoadedImage
         src={src}
         alt={alt}
         fill

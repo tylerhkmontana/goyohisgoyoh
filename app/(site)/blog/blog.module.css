@@ -1,9 +1,10 @@
 .main {
   display: grid;
   grid-template-columns: minmax(8rem, 10rem) minmax(0, 1fr);
-  grid-template-rows: auto 1fr;
+  grid-template-rows: auto auto 1fr;
   grid-template-areas:
     "archive meta"
+    "sortNav post"
     "postList post";
   column-gap: clamp(var(--space-16), 18vw, 22rem);
   row-gap: var(--space-8);
@@ -11,6 +12,20 @@
   margin-inline: clamp(var(--space-4), 5vw, var(--space-20));
       font-size: var(--text-sm);
 
+}
+
+.sortNav {
+  grid-area: sortNav;
+  display: flex;
+  gap: var(--space-4);
+  color: var(--highlight);
+  font-family: var(--font-courier);
+}
+
+.sortNav a:hover,
+.sortNav a:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.2em;
 }
 
 .archive {
@@ -151,6 +166,7 @@
       "meta"
       "post"
       "archive"
+      "sortNav"
         "postList"
         ;
     row-gap: var(--space-6);
