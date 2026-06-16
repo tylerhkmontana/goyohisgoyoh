@@ -54,6 +54,7 @@
 
     & p {
         width: 400px;
+        white-space: pre-wrap;
     }
 }
 
